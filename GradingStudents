@@ -1,0 +1,27 @@
+
+/*
+* Complete the 'gradingStudents' function below.
+*
+* The function is expected to return an INTEGER_ARRAY.
+* The function accepts INTEGER_ARRAY grades as parameter.
+*/
+
+vector<int> gradingStudents(vector<int> grades) {
+    vector<int> ret; // to return
+    for(int i = 0; i < grades.size(); i++){
+        int cur = grades[i];
+        
+        if(grades[i] < 38) ret.push_back(grades[i]);
+        else{
+            while(cur%5 != 0){
+                cur++; // increment until multiple of 5 is reached  
+            } 
+            cout << cur << endl; 
+            if((cur - grades[i] ) < 3) 
+                ret.push_back(cur);
+            else 
+                ret.push_back(grades[i]);
+        }
+    }
+    return ret;
+}
