@@ -1,0 +1,40 @@
+class Solution {
+public:
+    string sortSentence(string s) {
+        vector<string> words;
+        string temp;
+        // pushing everything into a vector for later manipulation
+        for(int i = 0; i < s.length(); i++){
+            if(s[i] == ' '){
+                words.push_back(temp);
+                temp = "";
+            }
+            else {
+                temp.push_back(s[i]);
+            }
+            if(i == s.length()-1){
+                words.push_back(temp);
+            }
+        }
+        // bubble sort
+        for(int i = 0; i < words.size(); i++){
+            for(int j = 0; j+1 < words.size(); j++){
+                int j1 = words[j].length()-1;
+                int j2 = words[j+1].length()-1;
+
+                if(words[j][j1] > words[j+1][j2]){
+                    string temp = words[j];
+                    words[j] = words[j+1];
+                    words[j+1] = temp;
+                }
+            }
+        }
+        temp = "";
+        for(int i = 0; i < words.size(); i++){
+            temp.append(words[i].substr(0,words[i].length()-1)); // striping away the last character
+            if(i==words.size()-1) break;
+            temp.push_back(' ');
+        }
+        return temp;
+    }
+};
