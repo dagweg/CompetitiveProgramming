@@ -1,0 +1,23 @@
+/*
+ * Complete the 'insertionSort1' function below.
+ *
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER_ARRAY arr
+ */
+void insertionSort1(int n, vector<int> arr) {
+    int last = arr[n-1]; // keeping track of the last element
+    
+    // insertion sort
+    for(int j = n-1; j > 0 && arr[j-1] > arr[j]; j--){
+        arr[j] = arr[j-1];
+        
+        for(int i : arr) // printing values every iteration
+            cout << i << " ";
+        cout << endl;
+        
+        arr[j-1] = last;
+    }
+    for(int i : arr)
+        cout << i << " ";   
+}
