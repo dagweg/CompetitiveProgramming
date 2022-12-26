@@ -1,0 +1,25 @@
+class Solution {
+public:
+   vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+        // for storing ([a,b] , distanceFromOrigin)
+        vector<pair<vector<int>, double>> pts; 
+        // the final vector to be returned
+        vector<vector<int>> ret; 
+        // iterating over input vector and making pair ([a,b], distanceFromOrigin)
+        for(vector<int>& v:points){
+            pts.push_back(make_pair(v, sqrt(pow(v[0],2) + pow(v[1],2))));
+        }
+        // sorting -> pts = ([a,b], distanceFromOrigin), based on the 2nd parameter(distanceFrOr)
+        // by making use of a lambda comparer function
+        sort(pts.begin(), pts.end(), [](const auto& a, const auto& b){return a.second < b.second;});
+        // for keeping track of length, i.e i=0
+        int i = 0;
+        for (const auto& p : pts) {
+            if (i >= k) break;
+            // Push vector [a,b] kTimes into the return vector
+            ret.push_back(p.first);
+            i++;
+        }
+        return ret;
+}    
+};
