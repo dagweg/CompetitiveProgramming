@@ -1,0 +1,13 @@
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        int n = nums.size(), p = 0;
+        vector<int> ret(n);
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i < n; i+=2,p++)
+            ret[i] = nums[p];
+        for(int i = 1; i < n; i+=2,p++)
+            ret[i] = nums[p];
+        return ret;
+    }
+};
