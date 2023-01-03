@@ -1,0 +1,14 @@
+class Solution {
+public:
+    string largestNumber(std::vector<int>& nums) {
+        string ret;
+        int n = nums.size();
+        vector<string> vec;
+        for(int i = 0; i < n; i++){
+            vec.push_back(to_string(nums[i]));
+        }
+        sort(vec.begin(), vec.end(), [](const string& a, const string& b){return a+b > b+a;});
+        for(int i = 0; i < n; i++) ret+=vec[i];
+        return (ret[0] == '0') ? "0" : ret;
+    }
+};
