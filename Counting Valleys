@@ -1,0 +1,18 @@
+int countingValleys(int steps, string path) {
+    int seaLevel = 0, valleys = 0;
+    bool enteredValley = 0;
+    for(char& c : path){
+        if(c == 'U'){
+            seaLevel++;
+        }else{
+            seaLevel--;
+        }
+        if(seaLevel < 0 && !enteredValley){
+            enteredValley = 1;
+        }else if (seaLevel >= 0 && enteredValley){
+            valleys++;
+            enteredValley = 0;
+        }
+    }
+    return valleys;
+}
