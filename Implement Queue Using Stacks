@@ -1,0 +1,45 @@
+class MyQueue {
+private:
+    stack<int> _stk;
+    stack<int> _temp;
+public:
+    MyQueue(){};
+    
+    void push(int x) {
+        _stk.push(x);
+    }
+    
+    int pop() {
+        while(!_stk.empty()){
+            _temp.push(_stk.top());
+            _stk.pop();
+        }
+
+        int ret = _temp.top();
+        _temp.pop();
+
+        while(!_temp.empty()){
+            _stk.push(_temp.top());
+            _temp.pop();
+        }
+        return ret;
+    }
+    
+    int peek() {
+        while(!_stk.empty()){
+        	_temp.push(_stk.top());
+        	_stk.pop();
+        }
+        int ret = _temp.top();
+
+        while(!_temp.empty()){
+        	_stk.push(_temp.top());
+        	_temp.pop();
+        }
+        return ret;
+    }
+    
+    bool empty() {
+        return _stk.empty();
+    }
+};
