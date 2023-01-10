@@ -1,0 +1,31 @@
+class MinStack {
+private:
+	vector<int> stackVector;
+    map<int,int> minValues;
+public:
+    MinStack() {}
+    
+    void push(int val) {
+        stackVector.emplace_back(val);       
+        ++minValues[val];
+    }
+    
+    void pop() {
+        int last = stackVector.back();
+        --minValues[last];
+        if(minValues[last] == 0) minValues.erase(last);
+    	stackVector.pop_back();
+    }
+    
+    int top() {
+        return stackVector[stackVector.size()-1];
+    }
+    
+    int getMin() {
+    	return minValues.begin()->first;
+    }
+
+    bool empty(){
+    	return stackVector.empty();
+    }
+};
