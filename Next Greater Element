@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        map<int,int> mp;
+
+        int n1 = nums1.size(), n2 = nums2.size();
+
+        // mapping values with their indices
+        for(int i = 0; i < n2; i++){
+            mp[nums2[i]] = i;
+        }
+
+        // to be returned
+        vector<int> ret;
+
+        // for each number in num1 array
+        for(int& i : nums1){
+            int max = i;
+            for(int j = mp[i]; j < n2; j++){
+                int element = nums2[j];
+                if(element > max){
+                    ret.push_back(element);
+                    break;
+                }else if(j == n2-1){
+                    ret.push_back(-1);
+                }
+            }
+        }
+
+        return ret;
+    }	
+};
