@@ -1,0 +1,11 @@
+class Solution {
+public:
+    static bool cbrt(const long long& n, const int& x){
+        if(n > x) return false;
+        if(n == x) return true;
+        return cbrt(n*3, x);
+    }
+    bool isPowerOfThree(int n) {
+        return cbrt(1,n);
+    }
+};
