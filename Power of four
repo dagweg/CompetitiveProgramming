@@ -1,0 +1,11 @@
+class Solution {
+public:
+    static bool po4(const long long x, const int& n){
+        if(x > n) return false;
+        if(x == n) return true;
+        return po4(x*4,n);
+    }
+    bool isPowerOfFour(int n) {
+        return po4(1,n);
+    }
+};
