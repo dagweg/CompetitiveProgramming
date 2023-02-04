@@ -11,23 +11,30 @@
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        vector<int> mVec;
-        for(ListNode* l : lists){
-            ListNode* t = l;
-            while(t != nullptr){
-                mVec.push_back(t->val);
-                t = t->next;
+        // naive solution O(n^2)
+        if(lists.empty()) return nullptr;
+        ListNode* head = new ListNode();
+        ListNode* cursor = head;
+        // concatenate
+        for(ListNode*& list : lists){
+            while(list != nullptr){
+                ListNode* temp = new ListNode(list->val);
+                cursor->next = temp;
+                cursor = temp;
+                list = list->next;
             }
         }
-        if(mVec.empty()) return nullptr;
-        sort(mVec.begin(), mVec.end());
-        ListNode* head = new ListNode(mVec[0]);
-        ListNode* cur = head;
-        for(int i = 1; i < mVec.size(); i++){
-            ListNode* tmp = new ListNode(mVec[i]);
-            cur->next = tmp;
-            cur = cur->next;
+        head = head->next;
+        // sort
+        for(ListNode* prev = head; prev != nullptr; prev=prev->next){
+            for(ListNode* curr = prev->next; curr != nullptr; curr=curr->next){
+                if(prev->val>curr->val){
+                    int tmp= prev->val;
+                    prev->val= curr->val;
+                    curr->val= tmp;
+                }
+            }
         }
-        return head;   
+        return head;    
     }
 };
