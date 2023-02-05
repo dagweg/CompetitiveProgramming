@@ -1,32 +1,31 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-            // Set to store the characters in the current substring
-            std::unordered_set<char> set;
+        if(s.size() == 0 || s.size() == 1) return s.size();
 
-            // Start and end indices of the current substring
-            int start = 0, end = 0;
+        ios::sync_with_stdio(0);
+        cin.tie(0);
 
-            // Length of the longest substring found so far
-            int longest = 0;
+        unordered_set<char> letters;
 
-            while (end < s.length()) {
-                // If the current character is not in the set, add it and move the end index forward
-                if (set.find(s[end]) == set.end()) {
-                    set.insert(s[end]);
-                    end++;
-                }
-                // If the current character is already in the set, remove the characters from the start of the substring until the duplicate character is removed, and move the start index forward
-                else {
-                    set.erase(s[start]);
-                    start++;
-                }
+        int longest = 1;
+        int left = 0, right = 1;
+        letters.insert(s[left]);
 
-                // Update the longest length if necessary
-                longest = std::max(longest, end - start);
+        while(right < s.size())
+        {
+            if(letters.count(s[right])){
+                letters.erase(s[left]);
+                left++;
             }
-
-        return longest;
+            else
+            {
+                letters.insert(s[right]);
+                longest = max(longest, right - left + 1);
+                right++;
+            }
         }
+        return longest;
 
+    }
 };
