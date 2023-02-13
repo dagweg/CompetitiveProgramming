@@ -19,7 +19,7 @@ public:
             length++;
             cursor = cursor->next;
         }
-        int middle = (length % 2 == 0) ? length/2 : floor(length/2);
+        int middle = length / 2;
         length = 0;
         cursor = head;
         while (cursor != nullptr)
